@@ -1,14 +1,16 @@
 package de.kla.spring.bug.autowire.constructor;
 
 import org.quartz.JobDetail;
+import org.quartz.Trigger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import de.kla.spring.bug.autowire.job.SpecificTrigger;
+import de.kla.spring.bug.autowire.job.base.DefaultSchedulerFactory;
 
-@Service
-public class ConstructorService {
+@Component
+public class ConstructorService extends DefaultSchedulerFactory {
 
 	private final SpecificTrigger trigger;
 
@@ -21,5 +23,10 @@ public class ConstructorService {
 
 	public JobDetail getJobDetail() {
 		return trigger.getJobDetail();
+	}
+
+	@Override
+	protected Trigger getCustomTrigger() {
+		return trigger;
 	}
 }
