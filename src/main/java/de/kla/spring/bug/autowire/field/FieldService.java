@@ -2,20 +2,21 @@ package de.kla.spring.bug.autowire.field;
 
 import javax.annotation.PostConstruct;
 
-import org.junit.Assert;
-
-import de.kla.spring.bug.autowire.SpringJobFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FieldService {
 
 	@Autowired
-	private SpringJobFactory springJobFactory;
+	private MethodInvokingJobDetailFactoryBean springJobFactory;
+
 	private Object entity;
 
 	@PostConstruct
 	public void init() {
-		entity = springJobFactory.newEntity();
+		entity = springJobFactory.getObject();
 	}
 
 	public Object getEntity() {

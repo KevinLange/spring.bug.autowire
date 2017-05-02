@@ -2,26 +2,27 @@ package de.kla.spring.bug.autowire.constructor;
 
 import javax.annotation.PostConstruct;
 
-import org.junit.Assert;
+import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
-import de.kla.spring.bug.autowire.SpringJobFactory;
-
+@Service
 public class ConstructorService {
 
-	private SpringJobFactory springJobFactory;
+	private final MethodInvokingJobDetailFactoryBean springJobFactory;
+
 	private Object entity;
 
-	public ConstructorService(SpringJobFactory springJobFactory) {
-		Assert.assertNotNull("springJobFactory must not be null", springJobFactory);
+	public ConstructorService(MethodInvokingJobDetailFactoryBean springJobFactory) {
+		Assert.notNull(springJobFactory, "springJobFactory must not be null");
+
 		this.springJobFactory = springJobFactory;
 	}
-	
 
 	@PostConstruct
 	public void init() {
-		entity = springJobFactory.newEntity();
+		entity = springJobFactory.getObject();
 	}
-
 
 	public Object getEntity() {
 		return entity;
