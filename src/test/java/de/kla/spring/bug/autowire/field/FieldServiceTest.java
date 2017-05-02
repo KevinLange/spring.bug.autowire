@@ -7,13 +7,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.kla.spring.bug.autowire.constructor.ConstructorService;
+import de.kla.spring.bug.autowire.FullContextTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class FieldServiceTest {
+public class FieldServiceTest extends FullContextTest {
 
 	@Autowired
-	private ConstructorService sut;
+	private FieldService sut;
 
 	@Before
 	public void setUp() {

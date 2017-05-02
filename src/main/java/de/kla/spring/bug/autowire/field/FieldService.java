@@ -3,14 +3,15 @@ package de.kla.spring.bug.autowire.field;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.stereotype.Service;
+
+import de.kla.spring.bug.autowire.job.DefaultJobDetailFactory;
 
 @Service
 public class FieldService {
 
 	@Autowired
-	private MethodInvokingJobDetailFactoryBean springJobFactory;
+	private DefaultJobDetailFactory springJobFactory;
 
 	private Object entity;
 
