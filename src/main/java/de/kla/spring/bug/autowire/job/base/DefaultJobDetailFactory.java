@@ -1,4 +1,4 @@
-package de.kla.spring.bug.autowire.job;
+package de.kla.spring.bug.autowire.job.base;
 
 import javax.annotation.PostConstruct;
 

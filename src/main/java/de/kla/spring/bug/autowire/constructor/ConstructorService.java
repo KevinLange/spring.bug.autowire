@@ -1,33 +1,25 @@
 package de.kla.spring.bug.autowire.constructor;
 
-import javax.annotation.PostConstruct;
-
+import org.quartz.JobDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import de.kla.spring.bug.autowire.job.DefaultJobDetailFactory;
+import de.kla.spring.bug.autowire.job.SpecificTrigger;
 
 @Service
 public class ConstructorService {
 
-	private final DefaultJobDetailFactory springJobFactory;
-
-	private Object entity;
+	private final SpecificTrigger trigger;
 
 	@Autowired
-	public ConstructorService(DefaultJobDetailFactory springJobFactory) {
-		Assert.notNull(springJobFactory, "springJobFactory must not be null");
+	public ConstructorService(SpecificTrigger trigger) {
+		Assert.notNull(trigger, "trigger must not be null");
 
-		this.springJobFactory = springJobFactory;
+		this.trigger = trigger;
 	}
 
-	@PostConstruct
-	public void init() {
-		entity = springJobFactory.getObject();
-	}
-
-	public Object getEntity() {
-		return entity;
+	public JobDetail getJobDetail() {
+		return trigger.getJobDetail();
 	}
 }

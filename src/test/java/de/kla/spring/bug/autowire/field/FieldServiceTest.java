@@ -22,6 +22,6 @@ public class FieldServiceTest extends FullContextTest {
 
 	@Test
 	public void newInstanceIsSet() {
-		Assert.assertNotNull("entity is expected to be notNull", sut.getEntity());
+		Assert.assertNotNull("JobDetail is expected to be notNull", sut.getJobDetail());
 	}
 }
